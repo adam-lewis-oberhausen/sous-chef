@@ -1,0 +1,30 @@
+# Ignore the virtual environment
+sous-chef-env/
+
+# Python and IDE common ignores
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+.dbshell
+*.swp
+*~
+.DS_Store
+.idea/
+.vscode/
+*.sublime-workspace
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite3
+
+# Local configuration file
+local_settings.py
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment Variables
+.env

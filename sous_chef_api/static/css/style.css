@@ -1,0 +1,17 @@
+body {
+    background-color: #f0f2f5;
+}
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.modal-content {
+    padding: 20px;
+}
+.valid-feedback, .invalid-feedback {
+    display: block;
+}
