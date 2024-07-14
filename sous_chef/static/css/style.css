@@ -1,17 +1,76 @@
 body {
-    background-color: #f0f2f5;
+    background-color: #666883;
+    font-family: 'Comfortaa', sans-serif;
+    color: #e8aeb7; 
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.debug-outline * {
+    outline: 1px solid red !important;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .login-container {
     max-width: 400px;
     margin: auto;
     padding: 30px;
-    background: #fff;
+    background: #464652;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .modal-content {
     padding: 20px;
 }
+
 .valid-feedback, .invalid-feedback {
     display: block;
+}
+
+.landing-page-h1 {
+    font-family: 'Satisfy', sans-serif; 
+    color: #b8e1ff; 
+    font-size: 3.5em; 
+    margin-bottom: 20px; 
+}
+
+.landing-page-subtitle {
+    font-family: 'Comfortaa', sans-serif; 
+    color: #e8aeb7;
+    font-size: 1.75em;
+    margin-bottom: 20px;
+}
+
+.chef-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
 }
