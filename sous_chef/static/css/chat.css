@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     display: flex;
     flex-direction: column;
-    font-family: Arial, sans-serif;
+    font-family: 'Comfortaa', sans-serif;
 }
 
 .container {
@@ -16,27 +16,32 @@ body, html {
     margin: 0 auto;
 }
 
+.debug-container {
+    flex: none;
+}
+
 .chat-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: #fff;
+    background: #b8e1ff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 3px;
     overflow-y: auto;
     max-width: 800px;
     width: 100%;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 30px auto;
 }
 
 .chat-box {
     flex: 1;
     overflow-y: auto;
-    padding: 10px;
-    background: #f9f9f9;
+    padding: 10px;   
     border: 1px solid #ccc;
     max-height: calc(100vh - 160px);
+    background-color: #464652;
+    border-radius: 8px;
 }
 
 .chat-input-container {
@@ -45,10 +50,10 @@ body, html {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    background: #fff;
-    border: 1px solid #ccc;
+    background: #b8e1ff;
+    /* border: 1px solid #ccc; */
     border-radius: 8px;
-    padding: 10px;
+    padding: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -61,6 +66,7 @@ body, html {
     overflow-y: auto;
     resize: none;
     box-sizing: border-box;
+    background-color: #464652;
 }
 
 .send-btn {

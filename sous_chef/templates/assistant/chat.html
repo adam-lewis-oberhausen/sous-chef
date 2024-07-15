@@ -11,12 +11,16 @@
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
 </head>
 <body>
+    <div class="container debug-container">
+        <button id="toggle-debug" class="btn btn-danger mt-3">Toggle Debug Outline</button>
+    </div>
     <div class="menu">
         <button class="menu-btn">&#9776;</button>
         <div class="menu-content">
             <a href="{% url 'logout' %}">Logout</a>
         </div>
     </div>
+
     <div class="container">
         <div class="chat-container">
             <div class="chat-box" id="chat-box">
@@ -34,5 +38,12 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="{% static 'js/chat.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#toggle-debug').on('click', function() {
+                $('body').toggleClass('debug-outline');
+            });
+        });
+    </script>
 </body>
 </html>
