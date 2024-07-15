@@ -50,8 +50,7 @@ body, html {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    background: #b8e1ff;
-    /* border: 1px solid #ccc; */
+    background: #070707;
     border-radius: 8px;
     padding: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -67,16 +66,21 @@ body, html {
     resize: none;
     box-sizing: border-box;
     background-color: #464652;
+    color: #e8aeb7;
 }
 
 .send-btn {
     margin-left: 10px;
-    background-color: #007bff;
+    background: none;
     border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 4px;
     cursor: pointer;
+    padding: 0; /* Remove default padding */
+}
+
+.send-btn svg.send-icon {
+    width: 30px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
+    fill: currentColor; /* Use current text color */
 }
 
 .chat-message {
