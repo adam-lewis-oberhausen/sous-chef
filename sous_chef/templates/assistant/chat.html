@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
 </head>
 <body>
+    {% if debug %}
     <div class="container debug-container">
         <button id="toggle-debug" class="btn btn-danger mt-3">Toggle Debug Outline</button>
     </div>
+    {% endif %}
+    
     <div class="menu">
         <button class="menu-btn">&#9776;</button>
         <div class="menu-content">

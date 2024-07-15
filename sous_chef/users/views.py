@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.core.validators import validate_email as validate_email_address
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 class UserCreate(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -18,8 +19,11 @@ class UserCreate(generics.CreateAPIView):
 
 def landing_page(request):
     if request.user.is_authenticated:  # Check if the user is already authenticated
-        return redirect('chat-interface')    
-    return render(request, 'users/landing_page.html')
+        return redirect('chat-interface')
+    context = {
+        'debug': settings.DEBUG,
+    }    
+    return render(request, 'users/landing_page.html', context)
 
 def register(request):
     if request.method == 'POST':

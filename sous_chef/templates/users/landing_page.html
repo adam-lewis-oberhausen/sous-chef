@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    {% if debug %}
     <div class="container">
         <button id="toggle-debug" class="btn btn-danger mt-3">Toggle Debug Outline</button>
     </div>
+    {% endif %}
 
     <div class="container">
         <div class="row justify-content-center mt-5">
