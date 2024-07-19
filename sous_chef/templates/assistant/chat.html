@@ -18,9 +18,15 @@
     </div>
     {% endif %}
 
+    <div class="menu-toggle">
+        <button class="menu-btn">
+            <i class="fa-duotone fa-bars default" style="--fa-primary-color: #b8e1ff; --fa-primary-opacity: 0.5; --fa-secondary-color: #e8aeb7; --fa-secondary-opacity: 0.5;"></i>
+            <i class="fa-duotone fa-bars hover" style="--fa-primary-color: #b8e1ff; --fa-secondary-color: #e8aeb7; --fa-secondary-opacity: 1;"></i>
+        </button>
+    </div>
+
     <div class="menu">
-        <button class="menu-btn">&#9776;</button>
-        <div class="menu-content">            
+        <div class="menu-content">
             <a href="{% url 'logout' %}">Create New Thread</a>
             <a href="{% url 'logout' %}">Logout</a>
         </div>
@@ -39,11 +45,7 @@
         <div class="chat-input-container">
             <textarea id="chat-input" class="chat-input" placeholder="Type your message..." data-url="{% url 'ask-assistant' %}"></textarea>
             <button id="send-btn" class="send-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="send-icon default">
-                    <path class="fa-secondary" opacity="0.5" fill="#e8aeb7" d="M0 448c0-17.7 14.3-32 32-32l320 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32z"/>
-                    <path class="fa-primary" opacity="0.5" fill="#b8e1ff" d="M164.7 43.3L41.9 166.1c-6.4 6.4-9.9 15-9.9 24C32 208.8 47.2 224 65.9 224l62.1 0 0 128c0 17.7 14.3 32 32 32l64 0c17.7 0 32-14.3 32-32l0-128 62.1 0c18.7 0 33.9-15.2 33.9-33.9c0-9-3.6-17.6-9.9-24L219.3 43.3C212.1 36.1 202.2 32 192 32s-20.1 4.1-27.3 11.3z"/>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="send-icon hover">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="send-icon">
                     <path class="fa-secondary" opacity="1" fill="#e8aeb7" d="M0 448c0-17.7 14.3-32 32-32l320 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32z"/>
                     <path class="fa-primary" fill="#b8e1ff" d="M164.7 43.3L41.9 166.1c-6.4 6.4-9.9 15-9.9 24C32 208.8 47.2 224 65.9 224l62.1 0 0 128c0 17.7 14.3 32 32 32l64 0c17.7 0 32-14.3 32-32l0-128 62.1 0c18.7 0 33.9-15.2 33.9-33.9c0-9-3.6-17.6-9.9-24L219.3 43.3C212.1 36.1 202.2 32 192 32s-20.1 4.1-27.3 11.3z"/>
                 </svg>
@@ -51,13 +53,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/d7d6f5c836.js" crossorigin="anonymous"></script>
     <script src="{% static 'js/chat.js' %}"></script>
-    <script>
-        $(document).ready(function(){
-            $('#toggle-debug').on('click', function() {
-                $('body').toggleClass('debug-outline');
-            });
-        });
-    </script>
 </body>
 </html>

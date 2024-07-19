@@ -63,8 +63,20 @@ $(document).ready(function(){
 
     // Menu toggle
     $('.menu-btn').on('click', function() {
-        $('.menu-content').toggle();
+        $('.menu').toggle();
     });
+
+    // Hover effect for the menu button
+    $('.menu-btn').hover(
+        function() {
+            $(this).find('.default').hide();
+            $(this).find('.hover').show();
+        },
+        function() {
+            $(this).find('.hover').hide();
+            $(this).find('.default').show();
+        }
+    );
 
     // Automatically scroll to the bottom on page load
     scrollToBottom();
