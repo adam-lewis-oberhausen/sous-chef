@@ -153,7 +153,7 @@ body, html {
 .menu-btn {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 36px;
     cursor: pointer;
     color: #b8e1ff;
     --fa-primary-color: #b8e1ff;
