@@ -91,11 +91,22 @@ body, html {
     box-shadow: none;
 }
 
-
 .send-btn svg.send-icon {
     width: 40px; /* Adjust size as needed */
     height: 40px; /* Adjust size as needed */
     fill: currentColor; /* Use current text color */
+}
+
+.send-btn .hover {
+    display: none;
+}
+
+.send-btn:hover .default {
+    display: none;
+}
+
+.send-btn:hover .hover {
+    display: inline;
 }
 
 .chat-message {
