@@ -18,6 +18,25 @@ class SousChefAssistant:
         self.assistant_name = 'Sous Chef Assistant'
         self.model_id = 'gpt-3.5-turbo'
         self.instruction = 'You are a Sous Chef assistant. You help users with recipes and meal planning.'
+        self.tools=[
+            {
+                "type": "function",
+                "function": {
+                "name": "update_user_name",
+                "description": "Update the user's name in the backend database.",
+                "parameters": {
+                    "type": "object",
+                        "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "The name the user would liked to be referred to as, (e.g. Adam, Bob, Kelly, Theodore, Mr. Stark)."
+                        }
+                        },
+                    "required": ["name"]
+                }
+                }
+            },
+        ]
 
         self.request = request
         self.user = request.user
@@ -122,3 +141,35 @@ class SousChefEventHandler(AssistantEventHandler):
     def on_text_delta(self, delta, snapshot):
         # print(delta.value, end="", flush=True)
         self.delta_queue.put(delta.value)
+    
+    @override
+    def on_event(self, event):
+      # Retrieve events that are denoted with 'requires_action'
+      # since these will have our tool_calls
+      logger.info(event.event)
+      if event.event == 'thread.run.requires_action':
+        run_id = event.data.id  # Retrieve the run ID from the event data
+        self.handle_requires_action(event.data, run_id)
+    
+    def handle_requires_action(self, data, run_id):
+      tool_outputs = []
+        
+      for tool in data.required_action.submit_tool_outputs.tool_calls:
+        if tool.function.name == "update_user_name":
+          logger.info('update_user_name requested!!')
+          tool_outputs.append({"tool_call_id": tool.id, "output": "57"})
+        
+      # Submit all tool_outputs at the same time
+    #   self.submit_tool_outputs(tool_outputs, run_id)
+    
+    # def submit_tool_outputs(self, tool_outputs, run_id):
+    #   # Use the submit_tool_outputs_stream helper
+    #   with client.beta.threads.runs.submit_tool_outputs_stream(
+    #     thread_id=self.current_run.thread_id,
+    #     run_id=self.current_run.id,
+    #     tool_outputs=tool_outputs,
+    #     event_handler=SousChefEventHandler(),
+    #   ) as stream:
+    #     for text in stream.text_deltas:
+    #       print(text, end="", flush=True)
+    #     print()
