@@ -66,17 +66,9 @@ $(document).ready(function(){
         $('.menu').toggle();
     });
 
-    // // Hover effect for the menu button
-    // $('.menu-btn').hover(
-    //     function() {
-    //         $(this).find('.default').hide();
-    //         $(this).find('.hover').show();
-    //     },
-    //     function() {
-    //         $(this).find('.hover').hide();
-    //         $(this).find('.default').show();
-    //     }
-    // );
+    $('#toggle-debug').on('click', function() {
+        $('body').toggleClass('debug-outline');
+    });
 
     // Automatically scroll to the bottom on page load
     scrollToBottom();

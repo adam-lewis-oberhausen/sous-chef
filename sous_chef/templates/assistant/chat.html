@@ -12,6 +12,10 @@
     <link rel="icon" href="{% static 'images/chef-icon.png' %}" type="image/png">
 </head>
 <body>
+    <script>
+        console.log("DEBUG is set to {{ debug }}");
+    </script>
+
     {% if debug %}
     <div class="container debug-container">
         <button id="toggle-debug" class="btn btn-danger mt-3">Toggle Debug Outline</button>
@@ -20,7 +24,7 @@
 
     <div class="menu-toggle">
         <button class="menu-btn">
-            <i class="fa-duotone fa-bars default" style="--fa-primary-color: #b8e1ff; --fa-primary-opacity: 0.5; --fa-secondary-color: #e8aeb7; --fa-secondary-opacity: 0.5;"></i>
+            <i class="fa-duotone fa-bars default" style="--fa-primary-color: #b8e1ff; --fa-secondary-color: #e8aeb7;"></i>
         </button>
     </div>
 

@@ -11,6 +11,10 @@
     <link rel="icon" href="{% static 'images/chef-icon.png' %}" type="image/png">
 </head>
 <body>
+    <script>
+        console.log("DEBUG is set to {{ debug }}");
+    </script>
+
     {% if debug %}
     <div class="container">
         <button id="toggle-debug" class="btn btn-danger mt-3">Toggle Debug Outline</button>
@@ -91,12 +95,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="{% static 'js/scripts.js' %}"></script>
-    <script>
-        $(document).ready(function(){
-            $('#toggle-debug').on('click', function() {
-                $('body').toggleClass('debug-outline');
-            });
-        });
-    </script>
 </body>
 </html>

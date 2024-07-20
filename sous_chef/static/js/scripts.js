@@ -55,4 +55,8 @@ $(document).ready(function(){
             $('#confirm-password-feedback').text('');
         }
     });
+
+    $('#toggle-debug').on('click', function() {
+        $('body').toggleClass('debug-outline');
+    });
 });

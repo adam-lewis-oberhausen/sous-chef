@@ -4,13 +4,18 @@ import threading
 from django.shortcuts import render
 from django.http import JsonResponse, StreamingHttpResponse
 from .assistant_service import SousChefAssistant, SousChefEventHandler
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
 def chat_interface(request):
     assistant = SousChefAssistant(request)
     previous_messages = assistant.get_previous_messages()
-    return render(request, 'assistant/chat.html', {'previous_messages': previous_messages})
+    context = {
+        'previous_messages': previous_messages,
+        'debug': settings.DEBUG,
+    }
+    return render(request, 'assistant/chat.html', context)
 
 def ask_assistant(request):
     user_message = request.GET.get('message', '')
