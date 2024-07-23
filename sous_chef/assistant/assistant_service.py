@@ -69,27 +69,26 @@ class SousChefAssistant:
 
     def get_or_create_thread(self):        
         logger.info('get_or_create_thread hit')
-        assistant_thread = AssistantThread.objects.get(user=self.user)
+        assistant_thread = AssistantThread.objects.get(user=self.user)        
         if 'thread_id' in self.session:
             logger.info('thread_id was found in session')
-            retrieved_thread = self.client.beta.threads.retrieve(self.session['thread_id'])
-            # show_json(retrieved_thread)
-            return retrieved_thread
+            return self.retrieve_thread(self.session['thread_id'])
         elif assistant_thread.thread_id:
             logger.info('thread_id found in database')
-            retrieved_thread = self.client.beta.threads.retrieve(assistant_thread.thread_id)
-            # show_json(retrieved_thread)
-            self.session['thread_id'] = assistant_thread.thread_id
+            retrieved_thread = self.retrieve_thread(assistant_thread.thread_id)                        
             return retrieved_thread
         else:
-            logger.info('creating new thread')
-            new_thread = self.create_thread()
-            # show_json(new_thread)
-            self.session['thread_id'] = new_thread.id
-            assistant_thread.thread_id = new_thread.id
-            assistant_thread.save()
-            return new_thread
+            return self.create_thread()
 
+    def retrieve_thread(self, thread_id):
+        try:
+            retrieved_thread = self.client.beta.threads.retrieve(thread_id)
+            self.session['thread_id'] = thread_id
+            return retrieved_thread
+        except:
+            logger.exception(f"An error occurred while retrieving thread id ({thread_id})")        
+            return self.create_thread()
+        
     def create_assistant(self):
         return self.client.beta.assistants.create(
             name=self.assistant_name,
@@ -98,7 +97,13 @@ class SousChefAssistant:
         )
 
     def create_thread(self):
-        return self.client.beta.threads.create()
+        logger.info('creating new thread')
+        assistant_thread = AssistantThread.objects.get(user=self.user)
+        new_thread = self.client.beta.threads.create()
+        self.session['thread_id'] = new_thread.id
+        assistant_thread.thread_id = new_thread.id
+        assistant_thread.save()
+        return new_thread
 
     def add_message_to_thread(self, role, message):
         return self.client.beta.threads.messages.create(

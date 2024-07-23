@@ -1,9 +1,10 @@
 import logging
 import queue
 import threading
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse, StreamingHttpResponse
 from .assistant_service import SousChefAssistant, SousChefEventHandler
+from .models import AssistantThread
 from django.conf import settings
 
 logger = logging.getLogger(__name__)
@@ -54,4 +55,33 @@ def ask_assistant(request):
                     break
 
     return StreamingHttpResponse(event_stream(), content_type='text/event-stream')
- 
+
+def create_new_thread(request):
+    assistant = SousChefAssistant(request)
+
+def delete_thread(request):
+    logger.info('delete_thread hit!')
+    thread_id = request.session['thread_id']
+    logger.info(f'thread_id: {thread_id}')
+    
+    assistant = SousChefAssistant(request)    
+    response = assistant.client.beta.threads.delete(thread_id)
+    logger.info(response)
+    
+    if response.deleted:
+        logger.info('delete the previous thread_id from the session')
+        
+        try:
+            del request.session['thread_id']
+        except KeyError:
+            pass
+        
+        # Delete the thread_id from the backend database
+        try:
+            assistant_thread = AssistantThread.objects.get(thread_id=thread_id)
+            assistant_thread.delete()
+            logger.info('thread_id deleted from the backend database')
+        except AssistantThread.DoesNotExist:
+            logger.info('thread_id not found in the backend database')
+    
+    return redirect('chat-interface')
